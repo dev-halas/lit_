@@ -23,7 +23,7 @@ export class CardItem extends LitElement {
         this.refresh = false
     }
 
-
+    /*
     delCity(city) {
         const delCity = new CustomEvent('del-city', {
             bubbles: true,
@@ -33,6 +33,12 @@ export class CardItem extends LitElement {
         this.dispatchEvent(
             delCity
         );
+        
+    }
+    */
+
+    _delSelf() {
+        this.remove()
     }
 
     sortSensors( a , b ){
@@ -60,11 +66,11 @@ export class CardItem extends LitElement {
     render() {
         return html`
             <div class="cardItem">
-                <button @click=${() => this.delCity(this.cityId)} class="cardDelete">
-                    <icon-delete color="#fff" color="red" width="20" height="20"></icon-delete>
-                </button>
                 <button @click=${this.refreshData} class="cardRefresh">
                     <icon-reload color="#fff" width="20" height="20"></icon-reload>
+                </button>
+                <button @click=${this._delSelf} class="cardDelete">
+                    <icon-delete color="#fff" width="20" height="20"></icon-delete>
                 </button>
                 <h2><slot>${this.city}</slot></h2>
                 ${this.sensors.map(item => {

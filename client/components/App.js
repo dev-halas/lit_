@@ -21,17 +21,18 @@ export class AppWrapper extends LitElement {
     getCity(event) {
         this.city = [...this.city, event.detail]
     }
-
+    /*
     delCity(event) {
         this.city = this.city.filter(city => city.id !== event.detail)
     }
+    */
 
     render() {
         return html`
             <div class="appWrapper">
                 <div class="container">
                     <search-bar @send-city=${this.getCity}></search-bar>
-                    <cards-wrapper .city=${this.city} @del-city=${this.delCity}></cards-wrapper>
+                    <cards-wrapper .city=${this.city}></cards-wrapper>
                     <info-bar>
                         *Index jakości powietrza wyrażany jest w <strong>"µg/m3"</strong><br/>
                         (mikro-gramach na metr sześcienny)
