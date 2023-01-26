@@ -19,7 +19,6 @@ export class SensorValue extends LitElement {
             .then(res => res.json())
             .then(res => res.values.filter(item => !!(item.value)))
             .then(res => res.shift().value)
-            .catch(err => console.error(err))
     }
 
     willUpdate(changeProps) {

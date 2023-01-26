@@ -26,7 +26,7 @@ export class AppWrapper extends LitElement {
         this.city = this.city.filter(city => city.id !== event.detail)
     }
     */
-
+   
     render() {
         return html`
             <div class="appWrapper">

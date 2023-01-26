@@ -51,9 +51,10 @@ export class CardItem extends LitElement {
         this.sensors = await fetch(`${apiUrls.sensors}${city}`)
             .then(res => res.json())
             .then(res => res.sort(this.sortSensors))
+            .catch(err => console.error(err))
     }
     
-    willUpdate(changeProp){
+    updated(changeProp){
         if(changeProp.has('cityId') || changeProp.has('refresh')) {
             this.getSensors(this.cityId)
         }
@@ -85,13 +86,9 @@ export class CardItem extends LitElement {
                         </div>
                     `
                 })}
-
             </div>
         `;
     }
 }
-
-
-    
-    
+  
 customElements.define('card-item', CardItem);

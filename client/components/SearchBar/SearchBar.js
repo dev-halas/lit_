@@ -14,7 +14,7 @@ export class SearchBar extends LitElement {
 
     constructor() {
         super();
-        this.entryData = this.getCity()
+        this.entryData = []
         this.outputData = []
         this.inputChange = ''
     }
@@ -24,6 +24,10 @@ export class SearchBar extends LitElement {
         this.entryData = await fetch(apiUrls.findAll)
             .then(res => res.json())
             .catch(err => console.error('Failed to load DATA from API: ', err))
+    }
+
+    firstUpdated() {
+        this.getCity()
     }
 
     //sen dinput to parent event
@@ -43,11 +47,10 @@ export class SearchBar extends LitElement {
 
     //filtering entry data to find match
     filterData() {
-        this.outputData = this.entryData
+        return this.outputData = this.entryData
             .filter(item => 
                 item.stationName.toLowerCase().match(this.inputChange.toLowerCase())
             )
-        return this.outputData;
     }
 
     //input change handle
@@ -70,6 +73,7 @@ export class SearchBar extends LitElement {
                     .value=${this.inputChange} 
                     @input=${this.changeInput} 
                     @focus=${this.changeInput}
+                    @click=${this.getCity}
                     type="search" 
                     id="search" 
                     placeholder="Wpisz miasto lub ulicę (min. 4 znaki)"  

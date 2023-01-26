@@ -11,4 +11,8 @@ export default defineConfig({
       external: /^lit/,
     },
   },
+  test: {
+    globals: true,
+    environment: "jsdom",
+  },
 })
